@@ -44,3 +44,20 @@ export interface FloodTrendPoint {
   day: string;
   floodPercentage: number;
 }
+
+export interface Report {
+  _id?: string;
+  reportId: string;
+  caseId: string;
+  title: string;
+  summary: string;
+  generatedBy: string;
+  fileUrl?: string;
+  createdAt?: string;
+  caseDetails?: FloodCase;
+  priorityDetails?: {
+    priorityLevel: PriorityLevel;
+    score: number;
+    factors: { label: string; weight: number }[];
+  };
+}

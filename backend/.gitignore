@@ -1,0 +1,7 @@
+# Backend local ignores
+node_modules/
+dist/
+build/
+.env
+.env.local
+*.log

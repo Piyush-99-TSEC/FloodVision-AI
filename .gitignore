@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build & Compilation Outputs
+dist/
+**/dist/
+build/
+**/build/
+*.tsbuildinfo
+.vite/
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+
+# Antigravity / AI Agent & Assistant Files
+.gemini/
+.agents/
+.antigravity/
+brain/
+scratch/
+knowledge/
+.system_generated/
+
+# Python & AI / Machine Learning Artifacts (for AI Service & Future Models)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.ipynb_checkpoints/
+*.onnx
+*.h5
+*.pth
+*.pt
+*.bin
+*.ckpt
+dataset/
+datasets/
+model_weights/
+checkpoints/
+
+# Logs & Temporary Files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo

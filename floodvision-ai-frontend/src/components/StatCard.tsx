@@ -10,25 +10,25 @@ interface StatCardProps {
 }
 
 const accentMap = {
-  flood: "text-flood-400 bg-flood-500/10",
-  amber: "text-amber-400 bg-amber-500/10",
-  crimson: "text-crimson-400 bg-crimson-500/10",
-  verdant: "text-verdant-400 bg-verdant-500/10",
+  flood: "text-blue-700 bg-blue-50 border-blue-200",
+  amber: "text-amber-700 bg-amber-50 border-amber-200",
+  crimson: "text-red-700 bg-red-50 border-red-200",
+  verdant: "text-emerald-700 bg-emerald-50 border-emerald-200",
 };
 
 export default function StatCard({ label, value, icon: Icon, accent = "flood", trend }: StatCardProps) {
   return (
-    <div className="rounded-xl border border-ink-700 bg-ink-800 p-5 shadow-panel">
+    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-sm hover:border-slate-300">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-wider text-slate-400">{label}</p>
-          <p className="mt-2 font-mono text-2xl font-semibold text-slate-100 tabular">{value}</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{label}</p>
+          <p className="mt-2 font-mono text-2xl font-bold text-slate-900 tabular">{value}</p>
         </div>
-        <div className={`rounded-lg p-2.5 ${accentMap[accent]}`}>
+        <div className={`rounded-lg border p-2.5 ${accentMap[accent]}`}>
           <Icon size={18} strokeWidth={2} />
         </div>
       </div>
-      {trend && <div className="mt-3 text-xs text-slate-400">{trend}</div>}
+      {trend && <div className="mt-3 text-xs text-slate-600 font-medium">{trend}</div>}
     </div>
   );
 }

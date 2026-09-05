@@ -1,87 +1,84 @@
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: ["./index.html", "./src/**/*.{ts,tsx}"],
-//   theme: {
-//     extend: {
-//       fontFamily: {
-//         display: ["'Space Grotesk'", "sans-serif"],
-//         body: ["'Inter'", "sans-serif"],
-//         mono: ["'JetBrains Mono'", "monospace"],
-//       },
-//       colors: {
-//         ink: {
-//           950: "#05080F",
-//           900: "#0A0F1C",
-//           850: "#0D1424",
-//           800: "#101A2E",
-//           700: "#16213A",
-//           600: "#233150",
-//           500: "#374764",
-//         },
-//         slate: {
-//           100: "#E7ECF3",
-//           300: "#B4BFD1",
-//           400: "#8B96AB",
-//           500: "#6B7690",
-//         },
-//         flood: {
-//           300: "#7EEAF2",
-//           400: "#3DD6E3",
-//           500: "#17B6C4",
-//           600: "#0F8E9B",
-//         },
-//         amber: {
-//           400: "#F7B84B",
-//           500: "#F5A524",
-//         },
-//         crimson: {
-//           400: "#F5677B",
-//           500: "#F0465A",
-//           600: "#D42E42",
-//         },
-//         verdant: {
-//           400: "#4FDB9F",
-//           500: "#2BC48A",
-//         },
-//       },
-//       boxShadow: {
-//         panel: "0 1px 2px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.02)",
-//         glow: "0 0 0 1px rgba(61,214,227,0.25), 0 0 24px rgba(61,214,227,0.12)",
-//       },
-//       backgroundImage: {
-//         grid: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-//       },
-//       backgroundSize: {
-//         grid: "28px 28px",
-//       },
-//     },
-//   },
-//   plugins: [],
-// };
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        display: ["'Space Grotesk'", "sans-serif"],
+        display: ["'Inter'", "'Space Grotesk'", "sans-serif"],
         body: ["'Inter'", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"],
       },
       colors: {
-        ink: { 950: "#05080F", 900: "#0A0F1C", 850: "#0D1424", 800: "#101A2E", 700: "#16213A", 600: "#233150", 500: "#374764" },
-        slate: { 100: "#E7ECF3", 300: "#B4BFD1", 400: "#8B96AB", 500: "#6B7690" },
-        flood: { 300: "#7EEAF2", 400: "#3DD6E3", 500: "#17B6C4", 600: "#0F8E9B" },
-        amber: { 400: "#F7B84B", 500: "#F5A524" },
-        crimson: { 400: "#F5677B", 500: "#F0465A", 600: "#D42E42" },
-        verdant: { 400: "#4FDB9F", 500: "#2BC48A" },
+        // Clean neutral background and surface palette mapped to existing utility classes
+        ink: {
+          950: "#0f172a", // Dark slate for header/sidebar accents if needed
+          900: "#f8fafc", // Clean light page background
+          850: "#f1f5f9", // Muted container background
+          800: "#ffffff", // Pure white card surfaces
+          700: "#e2e8f0", // Subtle border dividers
+          600: "#cbd5e1", // Secondary borders
+          500: "#64748b", // Muted text/subtitles
+        },
+        // Standard clean slate color scale
+        slate: {
+          50: "#f8fafc",
+          100: "#f1f5f9",
+          200: "#e2e8f0",
+          300: "#cbd5e1",
+          400: "#94a3b8",
+          500: "#64748b",
+          600: "#475569",
+          700: "#334155",
+          800: "#1e293b",
+          900: "#0f172a",
+          950: "#020617",
+        },
+        // Professional hydro blue primary brand palette
+        flood: {
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0284c7",
+          600: "#0369a1",
+          700: "#075985",
+          800: "#075985",
+          900: "#0c4a6e",
+        },
+        // Alert Amber
+        amber: {
+          50: "#fffbeb",
+          100: "#fef3c7",
+          400: "#f59e0b",
+          500: "#d97706",
+          600: "#b45309",
+          700: "#b45309",
+        },
+        // Emergency Red
+        crimson: {
+          50: "#fef2f2",
+          100: "#fee2e2",
+          400: "#f87171",
+          500: "#dc2626",
+          600: "#b91c1c",
+          700: "#991b1b",
+        },
+        // Success Emerald
+        verdant: {
+          50: "#f0fdf4",
+          100: "#dcfce7",
+          400: "#4ade80",
+          500: "#16a34a",
+          600: "#15803d",
+          700: "#15803d",
+        },
       },
       boxShadow: {
-        panel: "0 1px 2px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.02)",
-        glow: "0 0 0 1px rgba(61,214,227,0.25), 0 0 24px rgba(61,214,227,0.12)",
+        panel: "0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)",
+        card: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        glow: "0 1px 2px 0 rgba(2, 132, 199, 0.15)",
       },
-      backgroundImage: { grid: "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)" },
-      backgroundSize: { grid: "28px 28px" },
     },
   },
   plugins: [],

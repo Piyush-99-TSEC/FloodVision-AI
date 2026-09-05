@@ -1,1 +1,8 @@
+# Frontend local ignores
 node_modules/
+dist/
+build/
+*.tsbuildinfo
+.vite/
+.env
+.env.local

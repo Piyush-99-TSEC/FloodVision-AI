@@ -1,142 +1,230 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Waves, Mail, Lock, ArrowRight, Radio, MapPinned, BarChart3 } from "lucide-react";
+import { Waves, Mail, Lock, ArrowRight, Shield, MapPinned, AlertTriangle, User, UserCheck, AlertCircle } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login, register } = useAuth();
+  
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("viewer");
+  
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/dashboard");
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      if (isSignUp) {
+        await register(name, email, password, role);
+      } else {
+        await login(email, password);
+      }
+      navigate("/dashboard");
+    } catch (err: any) {
+      setError(err.message || "Authentication failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="flex min-h-screen w-full bg-ink-950">
-      {/* Left — brand / signature telemetry panel */}
-      <div className="relative hidden w-1/2 overflow-hidden lg:flex lg:flex-col lg:justify-between p-12">
-        <div className="absolute inset-0 bg-grid bg-grid opacity-60" />
-        <div
-          className="absolute -left-32 -top-32 h-96 w-96 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(23,182,196,0.25), transparent 70%)" }}
-        />
-        <div
-          className="absolute -bottom-40 right-0 h-[28rem] w-[28rem] rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(240,70,90,0.15), transparent 70%)" }}
-        />
-
+    <div className="flex min-h-screen w-full bg-slate-50">
+      {/* Left — Professional Light Brand & Purpose Panel */}
+      <div className="relative hidden w-1/2 overflow-hidden bg-slate-100/90 border-r border-slate-200 p-12 text-slate-900 lg:flex lg:flex-col lg:justify-between">
         <div className="relative z-10 flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-flood-500/15 text-flood-400">
-            <Waves size={22} />
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
+            <Waves size={24} />
           </div>
           <div>
-            <p className="font-display text-lg font-semibold text-slate-100">FloodVision AI</p>
-            <p className="text-xs text-slate-500">Disaster Response Console</p>
+            <p className="font-display text-xl font-bold text-slate-900 tracking-tight">FloodVision AI</p>
+            <p className="text-xs text-slate-500 font-medium">Disaster Response & Decision Support</p>
           </div>
         </div>
 
-        <div className="relative z-10 max-w-md">
-          <h1 className="font-display text-4xl font-semibold leading-tight text-slate-100">
-            Decisions in the first hour
-            <span className="text-flood-400"> save the most lives.</span>
+        <div className="relative z-10 max-w-lg space-y-6">
+          <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 border border-blue-200 px-3.5 py-1 text-xs font-bold text-blue-700">
+            <Shield size={14} className="text-blue-600" /> National Emergency Management Platform
+          </span>
+          <h1 className="font-display text-4xl font-bold leading-tight text-slate-900">
+            Rapid flood assessment and intelligent
+            <span className="text-blue-600"> rescue planning.</span>
           </h1>
-          <p className="mt-4 text-sm leading-relaxed text-slate-400">
-            Centralized flood assessment, damage mapping and rescue prioritization —
-            built for response teams operating under pressure.
+          <p className="text-sm leading-relaxed text-slate-600 font-medium">
+            Empowering disaster response officers, emergency coordinators, and analysts with
+            explainable AI flood extent mapping, building damage evaluation, and prioritized rescue deployment.
           </p>
 
-          <div className="mt-10 space-y-4 font-mono text-xs text-slate-500">
-            <div className="flex items-center gap-3 rounded-lg border border-ink-700 bg-ink-900/60 px-4 py-3">
-              <Radio size={14} className="text-flood-400" />
-              <span>5 ACTIVE CASES · 3 REGIONS MONITORED</span>
+          <div className="grid grid-cols-1 gap-3 pt-4 font-mono text-xs text-slate-700">
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3.5 shadow-sm">
+              <MapPinned size={16} className="text-blue-600 shrink-0" />
+              <span className="font-semibold text-slate-800">5 ACTIVE FLOOD CASES · 3 REGIONS MONITORED</span>
             </div>
-            <div className="flex items-center gap-3 rounded-lg border border-ink-700 bg-ink-900/60 px-4 py-3">
-              <MapPinned size={14} className="text-amber-400" />
-              <span>LAT 13.1362° N · LNG 78.1298° E · ZONE A</span>
-            </div>
-            <div className="flex items-center gap-3 rounded-lg border border-ink-700 bg-ink-900/60 px-4 py-3">
-              <BarChart3 size={14} className="text-crimson-400" />
-              <span>PRIORITY SCORE 0.89 · LEVEL HIGH</span>
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3.5 shadow-sm">
+              <AlertTriangle size={16} className="text-amber-600 shrink-0" />
+              <span className="font-semibold text-slate-800">KOLAR RIVERBANK SECTOR · PRIORITY SCORE 0.89</span>
             </div>
           </div>
         </div>
 
-        <p className="relative z-10 text-xs text-slate-600">
-          ROSP Project · Web Application Phase 1
+        <p className="relative z-10 text-xs text-slate-500 font-medium">
+          FloodVision AI · Disaster Response Console
         </p>
       </div>
 
-      {/* Right — form */}
-      <div className="flex w-full items-center justify-center px-6 lg:w-1/2">
-        <div className="w-full max-w-sm rounded-2xl border border-ink-700 bg-ink-800/70 p-8 shadow-panel backdrop-blur-xl">
-          <div className="mb-8 flex items-center gap-2.5 lg:hidden">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-flood-500/15 text-flood-400">
-              <Waves size={18} />
+      {/* Right — Real JWT Auth Form */}
+      <div className="flex w-full items-center justify-center px-6 lg:w-1/2 bg-slate-50">
+        <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white">
+                <Waves size={20} />
+              </div>
+              <div>
+                <p className="font-display text-lg font-bold text-slate-900">FloodVision AI</p>
+                <p className="text-xs text-slate-500 font-medium">Response Console</p>
+              </div>
             </div>
-            <p className="font-display text-base font-semibold text-slate-100">FloodVision AI</p>
           </div>
 
-          <h2 className="font-display text-2xl font-semibold text-slate-100">Sign in</h2>
-          <p className="mt-1 text-sm text-slate-400">Access your response dashboard.</p>
+          <div className="flex border-b border-slate-200 mb-6">
+            <button
+              type="button"
+              onClick={() => { setIsSignUp(false); setError(null); }}
+              className={`pb-2.5 px-4 text-sm font-semibold border-b-2 transition-all ${
+                !isSignUp
+                  ? "border-blue-600 text-blue-600 font-bold"
+                  : "border-transparent text-slate-500 hover:text-slate-700"
+              }`}
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              onClick={() => { setIsSignUp(true); setError(null); }}
+              className={`pb-2.5 px-4 text-sm font-semibold border-b-2 transition-all ${
+                isSignUp
+                  ? "border-blue-600 text-blue-600 font-bold"
+                  : "border-transparent text-slate-500 hover:text-slate-700"
+              }`}
+            >
+              Create Account
+            </button>
+          </div>
 
-          <form onSubmit={handleSubmit} className="mt-7 space-y-4">
+          <h2 className="font-display text-xl font-bold text-slate-900">
+            {isSignUp ? "Register Account" : "Welcome Back"}
+          </h2>
+          <p className="mt-1 text-sm text-slate-500">
+            {isSignUp
+              ? "Create a new profile to access disaster intelligence"
+              : "Enter your official credentials to access the response console."}
+          </p>
+
+          {error && (
+            <div className="mt-4 flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3 text-xs font-semibold text-red-700">
+              <AlertCircle size={16} className="mt-0.5 shrink-0 text-red-600" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+            {isSignUp && (
+              <div>
+                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-700">
+                  Full Name
+                </label>
+                <div className="flex items-center gap-2.5 rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-2.5 focus-within:border-blue-600 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-600/20 transition-all">
+                  <User size={16} className="text-slate-400" />
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Officer Sharma"
+                    className="w-full bg-transparent text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                  />
+                </div>
+              </div>
+            )}
+
             <div>
-              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-400">
-                Email
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-700">
+                Official Email
               </label>
-              <div className="flex items-center gap-2.5 rounded-lg border border-ink-600 bg-ink-900 px-3.5 py-2.5 focus-within:border-flood-500 focus-within:ring-1 focus-within:ring-flood-500/40">
-                <Mail size={16} className="text-slate-500" />
+              <div className="flex items-center gap-2.5 rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-2.5 focus-within:border-blue-600 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-600/20 transition-all">
+                <Mail size={16} className="text-slate-400" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="officer@floodvision.ai"
-                  className="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none"
+                  placeholder="officer@disaster-response.gov"
+                  className="w-full bg-transparent text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-700">
                 Password
               </label>
-              <div className="flex items-center gap-2.5 rounded-lg border border-ink-600 bg-ink-900 px-3.5 py-2.5 focus-within:border-flood-500 focus-within:ring-1 focus-within:ring-flood-500/40">
-                <Lock size={16} className="text-slate-500" />
+              <div className="flex items-center gap-2.5 rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-2.5 focus-within:border-blue-600 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-600/20 transition-all">
+                <Lock size={16} className="text-slate-400" />
                 <input
                   type="password"
                   required
+                  minLength={6}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••••"
-                  className="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none"
+                  placeholder="••••••••••••"
+                  className="w-full bg-transparent text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-1 text-xs">
-              <label className="flex items-center gap-2 text-slate-400">
-                <input type="checkbox" className="h-3.5 w-3.5 rounded border-ink-600 bg-ink-900 accent-flood-500" />
-                Keep me signed in
-              </label>
-              <a href="#" className="text-flood-400 hover:text-flood-300">
-                Forgot password?
-              </a>
-            </div>
+            {isSignUp && (
+              <div>
+                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-700">
+                  Role
+                </label>
+                <div className="flex items-center gap-2.5 rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-2 focus-within:border-blue-600 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-600/20 transition-all">
+                  <UserCheck size={16} className="text-slate-400" />
+                  <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="w-full bg-transparent text-sm font-medium text-slate-900 focus:outline-none"
+                  >
+                    <option value="viewer">Viewer (Read-only)</option>
+                    <option value="officer">Response Officer</option>
+                    <option value="analyst">Disaster Analyst</option>
+                  </select>
+                </div>
+              </div>
+            )}
 
             <button
               type="submit"
-              className="group mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-flood-500 py-2.5 text-sm font-semibold text-ink-950 shadow-glow transition hover:bg-flood-400"
+              disabled={isSubmitting}
+              className="group mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-all disabled:opacity-60"
             >
-              Sign in to Console
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+              {isSubmitting
+                ? isSignUp ? "Creating Account..." : "Signing In..."
+                : isSignUp ? "Register Account" : "Sign In to Console"}
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </button>
           </form>
 
-          <p className="mt-6 text-center text-xs text-slate-500">
-            Access is provisioned by your system administrator.
-          </p>
+          <div className="mt-6 rounded-lg bg-slate-50 p-3 border border-slate-200 text-center text-xs font-medium text-slate-500">
+            Connected to FloodVisionAI REST API (`http://localhost:5000/api/v1`)
+          </div>
         </div>
       </div>
     </div>

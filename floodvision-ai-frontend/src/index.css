@@ -3,23 +3,26 @@
 @tailwind utilities;
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  @apply bg-ink-900 text-slate-100 font-body antialiased;
+  @apply bg-slate-50 text-slate-900 font-body antialiased;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #233150;
-  border-radius: 8px;
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .tabular {
@@ -27,25 +30,21 @@ body {
 }
 
 .leaflet-container {
-  background: #0a0f1c !important;
+  background: #f1f5f9 !important;
   font-family: "Inter", sans-serif;
+  border-radius: 0.75rem;
 }
 
-.leaflet-popup-content-wrapper,
+.leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  font-size: 0.875rem;
+  padding: 4px;
+}
+
 .leaflet-popup-tip {
-  background: #101a2e;
-  color: #e7ecf3;
-}
-
-/* signature pulse dot for live telemetry */
-@keyframes pulse-ring {
-  0% {
-    box-shadow: 0 0 0 0 rgba(61, 214, 227, 0.55);
-  }
-  100% {
-    box-shadow: 0 0 0 8px rgba(61, 214, 227, 0);
-  }
-}
-.pulse-dot {
-  animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background: #ffffff !important;
 }
