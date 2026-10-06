@@ -1,0 +1,12 @@
+Because we don't just want to know:
+
+"Where is water?"
+
+We want to know:
+
+"Where did NEW water appear because of the disaster?"
+
+That's the important part.
+
+We run the Flood U-Net on the same location before and after the disaster, 
+then compare the two masks to find pixels that changed from land to water — those are the newly flooded areas.

@@ -1,0 +1,8 @@
+scene_id,building_pixels,flood_pixels,overlap_pixels,overlap_pct_of_buildings
+hurricane-florence_00000046,5781,511,26,0.45
+hurricane-florence_00000050,223,407,24,10.76
+hurricane-florence_00000013,978,622,12,1.23
+hurricane-florence_00000005,4531,384,10,0.22
+hurricane-florence_00000097,465,2640,5,1.08
+hurricane-florence_00000018,652,777,3,0.46
+hurricane-florence_00000016,1589,1027,2,0.13

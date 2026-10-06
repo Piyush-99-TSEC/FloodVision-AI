@@ -1,0 +1,2 @@
+tile_id,vv_min_db,vv_max_db,vv_mean_db,vh_min_db,vh_max_db,vh_mean_db,normalized_vv_mean,normalized_vh_mean,input_shape,predicted_flood_percentage
+hurricane-florence_00000181,-26.547415,6.4329185,-10.736637,-38.98373,-6.0835996,-16.33802,-0.08950882,0.18801585,"[128, 128]",7.861328125

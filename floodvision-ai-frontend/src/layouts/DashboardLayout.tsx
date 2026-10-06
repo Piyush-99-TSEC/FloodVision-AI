@@ -16,14 +16,21 @@ import {
   Settings,
   ShieldCheck,
   Activity,
+  LifeBuoy,
+  Users,
+  Sparkles,
+  Scan,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 const navItems = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/cases", label: "Flood Cases", icon: FolderKanban },
-  { to: "/cases/new", label: "Create Case", icon: FilePlus2 },
+  { to: "/cases/new", label: "New Satellite Analysis", icon: Scan },
   { to: "/map", label: "Interactive Map", icon: MapPinned },
+  { to: "/rescue-tasks", label: "Rescue Tasks", icon: LifeBuoy },
+  { to: "/allocation", label: "Team Allocation", icon: Users },
+  { to: "/vision-models", label: "Vision AI Models", icon: Sparkles },
   { to: "/priority", label: "Rescue Priority", icon: ListOrdered },
   { to: "/reports", label: "Reports", icon: FileBarChart },
 ];

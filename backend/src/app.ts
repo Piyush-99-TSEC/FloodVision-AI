@@ -1,12 +1,16 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import path from "path";
 import authRoutes from "./routes/authRoutes";
 import caseRoutes from "./routes/caseRoutes";
 import imageRoutes from "./routes/imageRoutes";
 import assessmentRoutes from "./routes/assessmentRoutes";
 import resultRoutes from "./routes/resultRoutes";
 import reportRoutes from "./routes/reportRoutes";
+import rescueTaskRoutes from "./routes/rescueTaskRoutes";
+import rescueTeamRoutes from "./routes/rescueTeamRoutes";
+import assignmentRoutes from "./routes/assignmentRoutes";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { sendSuccess } from "./utils/responseHandler";
 
@@ -19,6 +23,12 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Serve Vision AI research content & segmentation plots
+app.use(
+  "/static/research-content",
+  express.static(path.resolve(__dirname, "../../research-content"))
+);
 
 // Health Check Endpoint
 app.get("/api/v1/health", (_req: Request, res: Response) => {
@@ -41,6 +51,9 @@ app.use("/api/v1/images", imageRoutes);
 app.use("/api/v1/assessments", assessmentRoutes);
 app.use("/api/v1/results", resultRoutes);
 app.use("/api/v1/reports", reportRoutes);
+app.use("/api/v1/rescue-tasks", rescueTaskRoutes);
+app.use("/api/v1/rescue-teams", rescueTeamRoutes);
+app.use("/api/v1/assignments", assignmentRoutes);
 
 // Catch-all 404 Handler (compatible with Express v5)
 app.use((req: Request, _res: Response, next) => {

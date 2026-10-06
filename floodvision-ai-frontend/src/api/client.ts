@@ -83,7 +83,11 @@ export const authApi = {
 export const casesApi = {
   getCases: () => apiRequest("/cases", { method: "GET" }),
 
-  getDashboardSummary: () => apiRequest("/cases/summary/stats", { method: "GET" }),
+  getDashboardSummary: (caseId?: string) =>
+    apiRequest(
+      caseId ? `/cases/summary/stats?caseId=${encodeURIComponent(caseId)}` : "/cases/summary/stats",
+      { method: "GET" }
+    ),
 
   getCaseById: (id: string) => apiRequest(`/cases/${id}`, { method: "GET" }),
 
@@ -115,4 +119,102 @@ export const resultsApi = {
   getResultByAssessment: (assessmentId: string) =>
     apiRequest(`/results/${assessmentId}`, { method: "GET" }),
 };
+
+export const rescueTasksApi = {
+  getRescueTasks: (params?: {
+    sceneId?: string;
+    urgency?: string;
+    taskType?: string;
+    riskCategory?: string;
+    status?: string;
+    search?: string;
+    page?: number;
+    limit?: number;
+  }) => {
+    const query = new URLSearchParams();
+    if (params) {
+      Object.entries(params).forEach(([key, val]) => {
+        if (val !== undefined && val !== null && val !== "") {
+          query.append(key, String(val));
+        }
+      });
+    }
+    const qStr = query.toString() ? `?${query.toString()}` : "";
+    return apiRequest<{ total: number; page: number; limit: number; tasks: any[] }>(
+      `/rescue-tasks${qStr}`,
+      { method: "GET" }
+    );
+  },
+
+  getRescueTaskStats: () =>
+    apiRequest<any>("/rescue-tasks/stats", { method: "GET" }),
+
+  getRescueTaskById: (taskId: string) =>
+    apiRequest<any>(`/rescue-tasks/${taskId}`, { method: "GET" }),
+};
+
+export const rescueTeamsApi = {
+  getTeams: (params?: {
+    teamType?: string;
+    status?: string;
+    available?: boolean;
+    search?: string;
+  }) => {
+    const query = new URLSearchParams();
+    if (params) {
+      Object.entries(params).forEach(([key, val]) => {
+        if (val !== undefined && val !== null && val !== "") {
+          query.append(key, String(val));
+        }
+      });
+    }
+    const qStr = query.toString() ? `?${query.toString()}` : "";
+    return apiRequest<{ total: number; teams: any[] }>(`/rescue-teams${qStr}`, {
+      method: "GET",
+    });
+  },
+
+  getTeamById: (teamId: string) =>
+    apiRequest<any>(`/rescue-teams/${teamId}`, { method: "GET" }),
+};
+
+export const assignmentsApi = {
+  getAssignments: (params?: {
+    teamId?: string;
+    taskId?: string;
+    status?: string;
+    urgency?: string;
+    search?: string;
+  }) => {
+    const query = new URLSearchParams();
+    if (params) {
+      Object.entries(params).forEach(([key, val]) => {
+        if (val !== undefined && val !== null && val !== "") {
+          query.append(key, String(val));
+        }
+      });
+    }
+    const qStr = query.toString() ? `?${query.toString()}` : "";
+    return apiRequest<{ total: number; assignments: any[] }>(
+      `/assignments${qStr}`,
+      { method: "GET" }
+    );
+  },
+
+  generateAssignments: () =>
+    apiRequest<{
+      generatedAssignments: any[];
+      totalConsidered: number;
+      assignedCount: number;
+      unassignedCount: number;
+    }>("/assignments/generate", { method: "POST" }),
+
+  getAssignmentStats: () =>
+    apiRequest<any>("/assignments/stats", { method: "GET" }),
+
+  getAssignmentById: (assignmentId: string) =>
+    apiRequest<any>(`/assignments/${assignmentId}`, { method: "GET" }),
+};
+
+
 

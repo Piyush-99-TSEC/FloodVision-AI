@@ -1,0 +1,8 @@
+tile_id,event,vv_mean_db,vh_mean_db,predicted_flood_percentage
+guatemala-volcano_00000000,guatemala-volcano,-8.394899,-14.860143,1.0498046875
+guatemala-volcano_00000027,guatemala-volcano,-6.284279,-12.980549,0.0
+hurricane-florence_00000000,hurricane-florence,-11.110742,-16.700905,0.0
+hurricane-florence_00000545,hurricane-florence,-9.402598,-14.608675,0.360107421875
+hurricane-harvey_00000000,hurricane-harvey,-10.548986,-16.303232,0.08544921875
+hurricane-harvey_00000521,hurricane-harvey,-9.93685,-16.035889,6.8359375
+hurricane-matthew_00000000,hurricane-matthew,-9.6589985,-16.676933,8.111572265625

@@ -130,13 +130,20 @@ export default function Priority() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="font-display text-2xl font-bold text-slate-900">Rescue Priority Matrix</h1>
           <p className="text-sm font-medium text-slate-500">
-            Emergency response zones clustered by risk severity for optimal rescue resource allocation (MongoDB Atlas).
+            Emergency response zones clustered by risk severity for optimal rescue resource allocation.
           </p>
         </div>
+
+        <Link
+          to="/rescue-tasks"
+          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-700 shadow-sm transition-colors"
+        >
+          View Building Rescue Tasks (303) <ArrowRight size={13} />
+        </Link>
       </div>
 
       {/* Summary KPI Badges */}

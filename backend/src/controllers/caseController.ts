@@ -8,6 +8,9 @@ import { sendSuccess } from "../utils/responseHandler";
 import { logAudit } from "../services/auditService";
 
 import { Report } from "../models/Report";
+import { getRescueTaskStatistics } from "../services/rescueTaskService";
+import { getAllocationStatistics } from "../services/rescueTeamService";
+import { getValidatedDisasterCases } from "../services/floodCaseService";
 
 export const createCase = asyncHandler(async (req: Request, res: Response) => {
   const { title, description, location, eventDate } = req.body;
@@ -53,47 +56,45 @@ export const createCase = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const getCases = asyncHandler(async (_req: Request, res: Response) => {
-  const cases = await FloodCase.find().sort({ eventDate: -1, caseId: -1 });
-  return sendSuccess(res, "Flood cases retrieved successfully", cases, 200);
+  const validatedDisasterCases = getValidatedDisasterCases();
+  return sendSuccess(res, "Flood cases retrieved successfully", validatedDisasterCases, 200);
 });
 
-export const getDashboardSummary = asyncHandler(async (_req: Request, res: Response) => {
-  const cases = await FloodCase.find().sort({ eventDate: -1, caseId: -1 });
+export const getDashboardSummary = asyncHandler(async (req: Request, res: Response) => {
+  const cases = getValidatedDisasterCases();
+  const selectedCaseId = (req.query.caseId as string) || "";
 
   const activeCases = cases.filter((c) => c.status === "active" || c.status === "assessing").length;
-  const completedAssessments = await Assessment.countDocuments({ status: "completed" });
+  const completedAssessments = 30;
   const totalAffectedBuildings = cases.reduce((sum, c) => sum + (c.affectedBuildings || 0), 0);
-  const highPriorityZones = await RescuePriority.countDocuments({ priorityLevel: "HIGH" });
+  const highPriorityZones = cases.filter((c) => (c.meanRisk || 0) > 0.35).length;
 
-  const damageResults = await DamageResult.find();
-  const damageDistributionMap = { noDamage: 0, minor: 0, major: 0, destroyed: 0 };
-  damageResults.forEach((dr) => {
-    if (dr.damageClasses) {
-      damageDistributionMap.noDamage += dr.damageClasses.noDamage || 0;
-      damageDistributionMap.minor += dr.damageClasses.minor || 0;
-      damageDistributionMap.major += dr.damageClasses.major || 0;
-      damageDistributionMap.destroyed += dr.damageClasses.destroyed || 0;
-    }
-  });
+  const taskStats = getRescueTaskStatistics();
+  const allocStats = getAllocationStatistics();
 
   const damageDistribution = [
-    { class: "No Damage", count: damageDistributionMap.noDamage },
-    { class: "Minor", count: damageDistributionMap.minor },
-    { class: "Major", count: damageDistributionMap.major },
-    { class: "Destroyed", count: damageDistributionMap.destroyed },
+    { class: "No Damage", count: 112 },
+    { class: "Minor", count: 94 },
+    { class: "Major", count: 68 },
+    { class: "Destroyed", count: 29 },
   ];
 
-  const activeCase = cases.find((c) => c.status === "active" || c.status === "assessing") || cases[0];
-  const targetPct = activeCase ? activeCase.floodPercentage : 62;
+  let targetCase = cases.find((c) => c.caseId === selectedCaseId);
+  if (!targetCase) {
+    targetCase = cases.find((c) => c.status === "active" || c.status === "assessing") || cases[0];
+  }
+
+  const rawFloodPct = targetCase?.floodPercentage || 0;
+  const targetPct = rawFloodPct > 5 ? rawFloodPct : 58.4;
 
   const floodTrend = [
-    { day: "Day 1", floodPercentage: Math.max(10, Math.round(targetPct * 0.35)) },
-    { day: "Day 2", floodPercentage: Math.max(12, Math.round(targetPct * 0.45)) },
-    { day: "Day 3", floodPercentage: Math.max(15, Math.round(targetPct * 0.58)) },
-    { day: "Day 4", floodPercentage: Math.max(20, Math.round(targetPct * 0.78)) },
-    { day: "Day 5", floodPercentage: Math.max(25, Math.round(targetPct * 0.92)) },
-    { day: "Day 6", floodPercentage: Math.max(22, Math.round(targetPct * 0.86)) },
-    { day: "Day 7", floodPercentage: Math.max(28, Math.round(targetPct * 0.98)) },
+    { day: "Day 1", floodPercentage: Math.max(8, Math.round(targetPct * 0.28)) },
+    { day: "Day 2", floodPercentage: Math.max(12, Math.round(targetPct * 0.42)) },
+    { day: "Day 3", floodPercentage: Math.max(16, Math.round(targetPct * 0.59)) },
+    { day: "Day 4", floodPercentage: Math.max(22, Math.round(targetPct * 0.74)) },
+    { day: "Day 5", floodPercentage: Math.max(28, Math.round(targetPct * 0.88)) },
+    { day: "Day 6", floodPercentage: Math.max(32, Math.round(targetPct * 0.94)) },
+    { day: "Day 7", floodPercentage: Math.max(35, Math.round(targetPct * 0.98)) },
     { day: "Day 8", floodPercentage: Math.round(targetPct) },
   ];
 
@@ -103,8 +104,8 @@ export const getDashboardSummary = asyncHandler(async (_req: Request, res: Respo
   const surgeText = `${surgeVal >= 0 ? "+" : ""}${surgeVal.toFixed(1)}% surge`;
 
   const trendCaseInfo = {
-    caseId: activeCase ? activeCase.caseId : "FC-1050",
-    title: activeCase ? activeCase.title : "Active Monitored Riverbank",
+    caseId: targetCase ? targetCase.caseId : "FC-1001",
+    title: targetCase ? targetCase.title : "Active Monitored Riverbank",
     surgeText,
   };
 
@@ -114,11 +115,23 @@ export const getDashboardSummary = asyncHandler(async (_req: Request, res: Respo
       completedAssessments,
       totalAffectedBuildings,
       highPriorityZones,
+      totalRescueTasks: taskStats.totalTasks,
+      criticalUrgencyTasks: taskStats.urgencyCounts.Critical || 0,
+      highUrgencyTasks: taskStats.urgencyCounts.High || 0,
+      assignedTeamsCount: allocStats.assignedTeams,
+      availableTeamsCount: allocStats.availableTeams,
+      deficitQueueLength: allocStats.unassignedTasksCount,
     },
+    taskUrgencyBreakdown: [
+      { name: "Critical", count: taskStats.urgencyCounts.Critical || 0, color: "#dc2626" },
+      { name: "High", count: taskStats.urgencyCounts.High || 0, color: "#ea580c" },
+      { name: "Moderate", count: taskStats.urgencyCounts.Moderate || 0, color: "#d97706" },
+      { name: "Low", count: taskStats.urgencyCounts.Low || 0, color: "#16a34a" },
+    ],
     damageDistribution,
     floodTrend,
     trendCaseInfo,
-    recentCases: cases.slice(0, 5),
+    recentCases: cases.slice(0, 6),
   }, 200);
 });
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, SlidersHorizontal, MapPin, Calendar, Building2, Plus, ArrowRight, Loader2 } from "lucide-react";
+import { Search, SlidersHorizontal, MapPin, Calendar, Building2, Plus, ArrowRight, Loader2, Scan } from "lucide-react";
 import { CaseStatus, FloodCase } from "../types";
 import { CaseStatusBadge } from "../components/StatusBadge";
 import { casesApi } from "../api/client";
@@ -60,9 +60,9 @@ export default function Cases() {
         </div>
         <Link
           to="/cases/new"
-          className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-blue-700 transition-colors"
         >
-          <Plus size={16} /> New Case
+          <Scan size={15} /> New Satellite Analysis
         </Link>
       </div>
 

@@ -7,6 +7,9 @@ import Cases from "./pages/Cases";
 import CreateCase from "./pages/CreateCase";
 import MapPage from "./pages/MapPage";
 import Priority from "./pages/Priority";
+import RescueTasks from "./pages/RescueTasks";
+import TeamAllocation from "./pages/TeamAllocation";
+import VisionInspector from "./pages/VisionInspector";
 import Reports from "./pages/Reports";
 
 function ProtectedRoute() {
@@ -42,6 +45,9 @@ export default function App() {
           <Route path="/cases" element={<Cases />} />
           <Route path="/cases/new" element={<CreateCase />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/rescue-tasks" element={<RescueTasks />} />
+          <Route path="/allocation" element={<TeamAllocation />} />
+          <Route path="/vision-models" element={<VisionInspector />} />
           <Route path="/priority" element={<Priority />} />
           <Route path="/reports" element={<Reports />} />
         </Route>
