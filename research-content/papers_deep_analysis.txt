@@ -1,0 +1,517 @@
+
+======================================================================
+PAPER [1]: 1st-paper.pdf (Total Pages: 11)
+======================================================================
+--- PAGE 1 ---
+Sen1Floods11: a georeferenced dataset to train and test deep learning ﬂood
+algorithms for Sentinel-1
+Derrick Bonaﬁlia1
+Cloud to Street 1
+www.cloudtostreet.info
+Beth Tellman1,2
+Earth Institute, Columbia University 2
+beth@cloudtostreet.info
+Tyler Anderson1
+tyler@cloudtostreet.info
+Erica Issenberg1
+erica@cloudtostreet.info
+Abstract
+Accurate ﬂood mapping at global scale can support dis-
+aster relief and recovery efforts. Improving ﬂood relief ef-
+forts with more accurate data is of great importance due
+to expected increases in the frequency and magnitude of
+ﬂood events due to climate change. To assist efforts to oper-
+ationalize deep learning algorithms for ﬂood mapping at
+global scale, we introduce Sen1Floods11, a surface wa-
+ter data set including raw Sentinel-1 imagery and classi-
+ﬁed permanent water and ﬂood water . This dataset con-
+sists of 4,831 512x512 chips covering 120,406 km 2 and
+spans all 14 biomes, 357 ecoregions, and 6 continents of
+the world across 11 ﬂood events. We used Sen1Floods11
+to train, validate, and test fully convolutional neural net-
+works (FCNNs) to segment permanent and ﬂood water . We
+compare results of classifying permanent, ﬂood, and total
+surface water from training a FCNN model on four sub-
+sets of this data: i) 446 hand labeled chips of surface water
+from ﬂood events; ii) 814 chips of publicly available per-
+manent water data labels from Landsat (JRC surface water
+dataset); iii) 4,385 chips of surface water classiﬁed from
+Sentinel-2 images from 
+--- PAGE 2 ---
+Figure 1. Example of hand labeled validation data.
+short wave infrared spectrum (SWIR) relative to other ob-
+jects (1628-1652nm, MODIS Band 6) [ 56, 26, 3], or use the
+near infrared (NIR) spectrum (841-875nm, MODIS Band 2)
+relative to the visible spectrum (621-670nm MODIS Band
+1) [ 5] [ 19]. These approaches can provide water detection
+at a daily time step globally, although interpolation may be
+required when clouds obscure clear views [ 28, 27].
+Inundation can be identiﬁed in medium resolution sen-
+sors such as Landsat and Sentinel-2 using similar ap-
+proaches as MODIS algorithms. Landsat algorithms use
+band thresholding, normalized differencing, or more com-
+plex combinations of SWIR (1560- 1660nm, Landsat 8
+Band 6) and NIR (630-690nm, Landsat 8 Band 4) with other
+bands [ 20, 58, 7, 14, 13]. Pekel et al (2016) [ 43] mapped
+SWIR, NIR, and NIR+Green+Blue (525-600 and 450-515
+for bands 2 and 3, respectively in Landsat 8) onto HSV
+(Hue, Saturation, and V alue) to estimate global surface wa-
+ter extent at a monthly time step since 1984. Algorithms to
+map surface water for Sentinel-2 similarly rely on water’s
+absorption in SWIR (1539-1681 nm, Band 11) and NIR
+(768-796 nm, Band 8) [ 16]. Both Landsat and Sentinel-2
+suffer from misclassiﬁcations of water and cloud shadows,
+which both have low reﬂectance values in SWIR and NIR.
+Moderate resolution optical sensors can resolve inundation
+at a higher resolution than MODIS (30m and 10m for Land-
+sat and Sentinel-2 respectively) but suff
+--- PENULTIMATE / LAST PAGE EXCERPT ---
+y,
+Christopher J. Crawford, Jeffrey G. Masek, Curtis E. Wood-
+cock, Richard G. Allen, Martha C. Anderson, Alan S. Bel-
+ward, Warren B. Cohen, John Dwyer, Angela Erb, Feng
+Gao, Patrick Grifﬁths, Dennis Helder, Txomin Hermosilla,
+James D. Hipple, Patrick Hostert, M. Joseph Hughes, Justin
+Huntington, David M. Johnson, Robert Kennedy, Ayse Kilic,
+Zhan Li, Leo Lymburner, Joel McCorkel, Nima Pahlevan,
+Theodore A. Scambos, Crystal Schaaf, John R. Schott,
+Y ongwei Sheng, James Storey, Eric V ermote, James V ogel-
+mann, Joanne C. White, Randolph H. Wynne, and Zhe Zhu.
+Current status of Landsat program, science, and applications.
+Remote Sensing of Environment, 225:127–147, May 2019. 2
+[56] Xiangming Xiao, Stephen Boles, Steve Frolking, Chang-
+sheng Li, Jagadeesh Y Babu, William Salas, and Berrien
+Moore III. Mapping paddy rice agriculture in south and
+southeast asia using multi-temporal modis images. Remote
+Sensing of Environment, 100(1):95–113, 2006. 2
+[57] Hanqiu Xu. Modiﬁcation of normalised difference water
+index (NDWI) to enhance open water features in remotely
+sensed imagery. International Journal of Remote Sensing ,
+27(14):3025–3033, July 2006. 4
+[58] Kang Y ang, Manchun Li, Y ongxue Liu, Liang Cheng,
+Y uewei Duan, and Minxi Zhou. River Delineation from Re-
+motely Sensed Imagery Using a Multi-Scale Classiﬁcation
+Approach. IEEE Journal of Selected Topics in Applied Earth
+Observations and Remote Sensing , 7(12):4726–4737, Dec.
+2014. 2
+[59] Brittany Zajic. How ﬂood mapping from space protects the
+vulnerable and can save lives, Jun 2019. 1
+[60] V alentina Zantedeschi, Fabrizio Falasca, Alyson Douglas,
+Richard Strange, Matt J Kusner, and Duncan Watson-Parris.
+Cumulo: A Dataset for Learning Cloud Classes. page 11,
+2019. 2
+[61] Xiao Xiang Zhu, Devis Tuia, Lichao Mou, Gui-Song Xia,
+Liangpei Zhang, Feng Xu, and Friedrich Fraundorfer. Deep
+Learning in Remote Sensing: A Comprehensive Review and
+List of Resources. IEEE Geoscience and Remote Sensing
+Magazine, 5(4):8–36, Dec. 2017. 2
+
+======================================================================
+PAPER [2]: 2nd-paper.pdf (Total Pages: 8)
+======================================================================
+--- PAGE 1 ---
+Creating xBD: A Dataset for Assessing Building Damage from Satellite Imagery
+Ritwik Gupta1,2 Bryce Goodman3,5 Nirav Patel3,5 Richard Hosfelt1,2 Sandra Sajeev1,2
+Eric Heim1,2 Jigar Doshi6 Keane Lucas4,5 Howie Choset1 Matthew Gaston1,2
+1Carnegie Mellon University 2Software Engineering Institute 3Defense Innovation Unit
+4Joint Artiﬁcial Intelligence Center 5Department of Defense 6CrowdAI, Inc.
+Abstract
+We present a preliminary report for xBD, a new large-
+scale dataset for the advancement of change detection and
+building damage assessment for humanitarian assistance
+and disaster recovery research. Logistics, resource planning,
+and damage estimation are difﬁcult tasks after a disaster ,
+and putting ﬁrst responders into post-disaster situations is
+dangerous and costly. Using passive methods, such as analy-
+sis on satellite imagery, to perform damage assessment saves
+manpower , lowers risk, and expedites an otherwise danger-
+ous process. xBD provides pre- and post-event multi-band
+satellite imagery from a variety of disaster events with build-
+ing polygons, classiﬁcation labels for damage types, ordinal
+labels of damage level, and corresponding satellite meta-
+data. Furthermore, the dataset contains bounding boxes
+and labels for environmental factors such as ﬁre, water , and
+smoke. xBD will be the largest building damage assessment
+dataset to date, containing ∼700,000 building annotations
+across over 5,000 km 2 of imagery from 15 countries.
+1. Introduction
+With recent, abrupt chang
+--- PAGE 2 ---
+problem and address operational concerns of the HADR and
+emergency response community.
+2. Related Work
+Assessing damage from satellite imagery, especially for
+disparate disaster types, is a complicated task. Intuitively,
+it is easy to imagine that different disasters—for example,
+ﬂoods versus ﬁres—would impact buildings in drastically
+different ways. In order to train robust building damage
+assessment models, datasets that can provide imagery from
+multiple types and severities of disasters are critical.
+2.1. Existing data sources
+Existent satellite imagery datasets that contain damaged
+buildings cover only single disaster types, with different
+labeling criteria for damaged structures [ 14, 4, 28, 12].
+Furthermore, there are limited datasets that provide la-
+bels for forces of nature (ﬁre, water, wind, etc.) that caused
+damage to a building visible in satellite imagery. Related
+datasets [9, 15] provide derivative location information of
+where these forces may occur, but they do not contain im-
+agery of the damaged structures themselves. From an op-
+erational perspective, it is much more useful to be able to
+classify a building as, for example, “damage level 5 caused
+by ﬁre and wind” as opposed to simply “damage level 5.”
+For any given disaster, currently it is too difﬁcult and time
+consuming to assess which factors damaged a given build-
+ing to any level of granularity. It is simply assumed that a
+tornado caused wind damage, a wildﬁre caused ﬁre-related
+damage, and more. Howev
+--- PENULTIMATE / LAST PAGE EXCERPT ---
+ord. xView: Objects
+in Context in Overhead Imagery. arXiv:1802.07856 [cs], Feb.
+2018. 4
+[23] V . Mnih and G. E. Hinton. Learning to Detect Roads in High-
+Resolution Aerial Images. In Computer Vision – ECCV 2010 ,
+volume 6316, pages 210–223. Springer Berlin Heidelberg,
+Berlin, Heidelberg, 2010. 5
+[24] S. Okada and N. Takai. Classiﬁcations of Structural Types
+and Damage Patterns of Buildings for Earthquake Field Inves-
+tigation. Journal of Structural and Construction Engineering
+(Transactions of AIJ), 64(524):65–72, 1999. 2
+[25] A. Shrivastava, A. Gupta, and R. Girshick. Training Region-
+Based Object Detectors with Online Hard Example Mining.
+arXiv:1604.03540 [cs], Apr. 2016. 3
+[26] K.-K. Sung. Learning and Example Selection for Object and
+Pattern Detection. PhD thesis, Massachusetts Institute of
+Technology, Mar. 1996. 3
+[27] A. Thieken, V . Ackermann, F. Elmer, H. Kreibich,
+B. Kuhlmann, U. Kunert, H. Maiwald, B. Merz, K. Piroth,
+J. Schwarz, R. Schwarze, I. Seifert, J. Seifert, and L.-F.-U.
+Innsbruck. Methods for the Evaluation of Direct and Indirect
+Flood Losses. Proceedings of the 4th International Sympo-
+sium on Flood Defence , page 10, May 2008. 2
+[28] United States Geological Survey. Building Damage Assess-
+ment in the City of Mocoa. United Nations Institute for
+Training and Research, Apr. 2017. 2
+[29] W. A. Wahballah, T. M. Bazan, and M. Ibrahim. Smear effect
+on high-resolution remote sensing satellite image quality. In
+2018 IEEE Aerospace Conference, pages 1–14, Mar. 2018. 4
+[30] F. Y amazaki, K. Kouchi, M. Matsuoka, M. Kohiyama, and
+N. Muraoka. Damage Detection From High-Resolution Satel-
+lite Images for the 2003 Boumerdes, Algeria Earthquake.
+Proceedings of 3rd International workshop Remote Sensing
+for Post-Disaster Response, page 13, Sept. 2005. 3
+16
+
+Appendices
+Figure 6: (Top) “Major” and “destroyed” examples for ﬂooding. (Bottom) “No damage” and “destroyed” examples for ﬁre.
+Figure 7: The same chip in red/green/blue (left) and red/near-IR/blue (right).
+17
+
+
+======================================================================
+PAPER [3]: 3rd-paper.pdf (Total Pages: 11)
+======================================================================
+--- PAGE 1 ---
+FloodNet: A High Resolution Aerial Imagery Dataset for Post Flood Scene
+Understanding
+Maryam Rahnemoonfar, Tashnim Chowdhury, Argho Sarkar, Debvrat Varshney, Masoud Yari
+University of Maryland Baltimore County
+Baltimore, Maryland
+maryam@umbc.edu, tchowdhury@umbc.edu, asarkar2@umbc.edu, dvarshney@umbc.edu, yari@umbc.edu
+Robin Murphy
+Texas A&M University
+College Station, Texas
+murphy@cse.tamu.edu
+Abstract
+Visual scene understanding is the core task in making
+any crucial decision in any computer vision system. Al-
+though popular computer vision datasets like Cityscapes,
+MS-COCO, PASCAL provide good benchmarks for several
+tasks (e.g. image classiﬁcation, segmentation, object de-
+tection), these datasets are hardly suitable for post disas-
+ter damage assessments. On the other hand, existing natu-
+ral disaster datasets include mainly satellite imagery which
+have low spatial resolution and a high revisit period. There-
+fore, they do not have a scope to provide quick and efﬁ-
+cient damage assessment tasks. Unmanned Aerial Vehicle
+(UAV) can effortlessly access difﬁcult places during any dis-
+aster and collect high resolution imagery that is required for
+aforementioned tasks of computer vision. To address these
+issues we present a high resolution UAV imagery, FloodNet,
+captured after the hurricane Harvey. This dataset demon-
+strates the post ﬂooded damages of the affected areas. The
+images are labeled pixel-wise for semantic segmentation
+task and questions are produced for the task of 
+--- PAGE 2 ---
+Real Image Ground Truth Segmented Image  QA Pair
+ 
+Image Class: Non-Flooded
+What is	the	overall	condition	of	the	
+given	image?			Non-Flooded
+How many buildings are non ﬂooded? 6
+How many buildings are in this image? 6
+Is the entire road ﬂooded? No
+What is the condition of the 
+road in this image? Non-Flooded
+Image Class: Flooded
+Image Class: Flooded
+Background
+How many buildings are in this image? 19
+Is the entire road ﬂooded? No
+What is the condition of the 
+road in this image? Flooded and Non-Flooded
+How many buildings are ﬂooded? 19
+What is the condition of the road
+in this image? Flooded
+How many buildings are in the image? 5
+How many non ﬂooded buildings can be seen 
+in this image? 3
+Background
+Building-ﬂooded
+Building-non-ﬂodded
+Road-ﬂooded
+Road-non-ﬂooded
+Water
+Tree
+Vehicle
+Pool
+Grass
+Figure 1. FloodNet dataset overview for Classiﬁcation, Semantic Segmentation and Visual Question Answering
+Although several datasets [8, 7, 30, 66] are provided for
+post disaster damage assessments, they have numerous is-
+sues to tackle. Most of those datasets contain satellite im-
+ages and images collected from social media. Satellite im-
+ages are low in resolution and captured from high altitude.
+They are affected from several noises including clouds and
+smokes. Moreover, deploying satellites and collecting im-
+ages from these are costly. On the other hand, images
+posted on social media are noisy and not scalable for deep
+learning models. To address this issues, our dataset, Flood-
+Net,
+--- PENULTIMATE / LAST PAGE EXCERPT ---
+ianping Fan, and Dacheng Tao. Multi-
+modal factorized bilinear pooling with co-attention learning
+for visual question answering. In Proceedings of the IEEE
+international conference on computer vision , pages 1821–
+1830, 2017. 4, 7, 8
+[72] Zhou Yu, Jun Yu, Chenchao Xiang, Jianping Fan, and
+Dacheng Tao. Beyond bilinear: Generalized multimodal
+factorized high-order pooling for visual question answering.
+IEEE transactions on neural networks and learning systems,
+29(12):5947–5959, 2018. 4
+[73] Hang Zhang, Kristin Dana, Jianping Shi, Zhongyue Zhang,
+Xiaogang Wang, Ambrish Tyagi, and Amit Agrawal. Con-
+text encoding for semantic segmentation. In Proceedings of
+the IEEE conference on Computer Vision and Pattern Recog-
+nition, pages 7151–7160, 2018. 4
+[74] Hengshuang Zhao, Jianping Shi, Xiaojuan Qi, Xiaogang
+Wang, and Jiaya Jia. Pyramid scene parsing network. In
+Proceedings of the IEEE conference on computer vision and
+pattern recognition, pages 2881–2890, 2017. 4, 7
+[75] Hengshuang Zhao, Yi Zhang, Shu Liu, Jianping Shi, Chen
+Change Loy, Dahua Lin, and Jiaya Jia. Psanet: Point-wise
+spatial attention network for scene parsing. In Proceedings
+of the European Conference on Computer Vision (ECCV) ,
+pages 267–283, 2018. 4
+[76] Yi Zhao, Jiale Ma, Xiaohui Li, and Jie Zhang. Saliency de-
+tection and deep learning-based wildﬁre identiﬁcation in uav
+imagery. Sensors, 18(3):712, 2018. 4
+[77] Bolei Zhou, Yuandong Tian, Sainbayar Sukhbaatar, Arthur
+Szlam, and Rob Fergus. Simple baseline for visual question
+answering. arXiv preprint arXiv:1512.02167, 2015. 8
+[78] Xiaoyu Zhu, Junwei Liang, and Alexander Hauptmann.
+Msnet: A multilevel instance segmentation network for nat-
+ural disaster damage assessment in aerial videos. arXiv
+preprint arXiv:2006.16479, 2020. 2, 3
+[79] Yuke Zhu, Oliver Groth, Michael Bernstein, and Li Fei-Fei.
+Visual7w: Grounded question answering in images. In Pro-
+ceedings of the IEEE conference on computer vision and pat-
+tern recognition, pages 4995–5004, 2016. 3, 4
+11
+
+======================================================================
+PAPER [4]: 4th-paper.pdf (Total Pages: 20)
+======================================================================
+--- PAGE 1 ---
+   
+Copyright  and  Reuse:  Copyright  and  Moral  Rights  remain  with  the  author(s)  and/or
+copyright  holders.  Copies  of  full  items  can  be  used  for  personal  research  or  study,
+educational, or not-for-profit purposes without prior permission or charge, unless otherwise
+indicated,  provided  that  the  authors,  title  and  full  bibliographic  details  are  credited,  a
+hyperlink and/or URL is given for the original metadata page and the content is not changed
+in any way. For full details of reuse please refer to City Research Online policy.
+City Research Online:            http://openaccess.city.ac.uk/            publications@citystgeorges.ac.uk
+Citation:  Selvakumaran, S., Rolland, I., Cullen, L., Davis, R., Macabuag, J., 
+Chakra, C. A., Karageozian, N., Gilani, A., Geiβ, C., Bravo-Haro, M. A. & et al 
+(2025). Improving operational use of post-disaster damage assessment for Urban 
+Search and Rescue by integrated graph-based multimodal remote sensing data 
+analysis. Progress in Disaster Science, 25, 100404. doi: 
+10.1016/j.pdisas.2025.100404 
+This is the published version of the paper.
+This version of the publication may differ from the final published version. To cite 
+this item please consult the publisher's version.
+Permanent repository link: https://openaccess.city.ac.uk/id/eprint/34580/
+Link to published version: https://doi.org/10.1016/j.pdisas.2025.100404
+City Research Online
+City St George’s, University of London
+--- PAGE 2 ---
+Improving operational use of post-disaster damage assessment for Urban 
+Search and Rescue by integrated graph-based multimodal remote sensing 
+data analysis
+Sivasakthy Selvakumaran a,b,*,1, Iain Rolland a, Luke Cullen a, Rob Davis b,c, Joshua Macabuag b,  
+Charbel Abou Chakra d, Nanor Karageozian d, Amir Gilani e, Christian Geiβ f,g,  
+Miguel Bravo-Haro h, Andrea Marinoni i
+a Engineering Department, University of Cambridge, United Kingdom
+b Search and Rescue Assistance in Disasters (SARAID), United Kingdom
+c UCL Institute for Risk and Disaster Reduction, University College London, United Kingdom
+d Urban Analysis and Policy Unit, United Nations Human Settlements Programme (UN-Habitat), Lebanon
+e Miyamoto International, USA
+f German Remote Sensing Data Center, German Aerospace Center (DLR), Germany
+g Department of Geography, University of Bonn, Bonn 53115, Germany
+h City St George’s, University of London, United Kingdom
+i Department of Physics and Technology, UiT the Arctic University of Norway, Norway
+ARTICLE INFO
+Keywords:
+Disaster management
+Post-disaster
+Urban Search and Rescue (USAR)
+Remote sensing
+Graph-based data analysis
+Machine learning
+ABSTRACT
+This work investigates the application of remote sensing technologies within the specific operational context of 
+emergency urban search and rescue (USAR) efforts post-disaster. We thoroughly investigate two innovative 
+methodologies, each tailored to meet distinct operational goals in a USAR setting. The first employs a belief
+--- PENULTIMATE / LAST PAGE EXCERPT ---
+ Conference on neural information processing systems (NeurIPS 
+2020), virtual, December 6-12, 2020. 33; 2020. p. 12827–36.
+[42] Eswaran D, Günnemann S, Faloutsos C, Makhija D, Kumar M. ZooBP: belief 
+propagation for heterogeneous networks. Proc VLDB Endow 2017;10(5):625–36. 
+https://doi.org/10.14778/3055540.3055554.
+[43] Rolland I, Marinoni A, Selvakumaran S. Uncertainty-aware graph-based 
+multimodal remote sensing detection of out-of-distribution samples. In: CDCEO 
+2021: 1st workshop on complex data challenges in earth observation, November 1, 
+2021. QLD, Australia: Virtual Event; 2021. https://ceur-ws.org/Vol-3052/short5. 
+pdf.
+[44] Jøsang A, Cho J-H, Chen F. Uncertainty characteristics of subjective opinions. In: 
+21st international conference on information fusion (FUSION 2018), Cambridge, 
+U.K., July 10-13, 2018; 2018. p. 1998–2005.
+[45] Kipf TN, Welling M. Semi-supervised classification with graph convolutional 
+networks; 2016. arXiv preprint; 2016. https://arxiv.org/abs/1609.02907.
+[46] Jøsang A. Subjective logic - a formalism for reasoning under uncertainty. In: 
+Artificial intelligence: foundations, theory, and algorithms. Springer; 2016. 
+https://doi.org/10.1007/978-3-319-42337-1.
+[47] Marinoni A, Chlaily S, Khachatrian E, Eltoft T, Selvakumaran S, Girolami M, et al. 
+Enhancing ensemble learning and transfer learning in multimodal data analysis by 
+adaptive dimensionality reduction; 2021. Arxiv; 2021 [online] Available at: https 
+://arxiv.org/abs/2105.03682v1.
+[48] Chen W, Zhang L. Predicting building damages in mega-disasters under 
+uncertainty: an improved Bayesian network learning approach. Sustain Cities Soc 
+2021;66:102689. https://doi.org/10.1016/j.scs.2020.102689.
+S. Selvakumaran et al.                                                                                                                                                                                                                         Progress in Disaster Science 25 (2025) 100404 
+19 
+
+======================================================================
+PAPER [5]: 5th-paper.pdf (Total Pages: 10)
+======================================================================
+--- PAGE 1 ---
+From Pixels to Semantics: A Multi-Stage AI Framework for Structural Damage
+Detection in Satellite Imagery
+Bijay Shakya∗, Catherine Hoier∗, Khandaker Mamun Ahmed†
+The Beacom College of Computer & Cyber Sciences, Dakota State University, USA
+{Bijay.Shakya@trojans, Catherine.Hoier@trojans, khandakermamun.Ahmed@}.dsu.edu
+Abstract
+Rapid and accurate structural damage assessment follow-
+ing natural disasters is critical for effective emergency re-
+sponse and recovery. However, remote sensing imagery of-
+ten suffers from low spatial resolution, contextual ambigu-
+ity, and limited semantic interpretability, reducing the re-
+liability of traditional detection pipelines. In this work,
+we propose a novel hybrid framework that integrates AI-
+based super-resolution, deep learning object detection,
+and Vision-Language Models (VLMs) for comprehensive
+post-disaster building damage assessment. First, we en-
+hance pre- and post-disaster satellite imagery using a Video
+Restoration Transformer (VRT) to upscale images from
+1024×1024to4096×4096resolution, improving structural
+detail visibility. Next, a YOLOv11-based detector local-
+izes buildings in pre-disaster imagery, and cropped build-
+ing regions are analyzed using VLMs to semantically assess
+structural damage across four severity levels. To ensure
+robust evaluation in the absence of ground-truth captions,
+we employ CLIPScore for reference-free semantic align-
+ment and introduce a multi-model VLM-as-a-Jury strategy
+to reduce individual model 
+--- PAGE 2 ---
+ious tornado events, with the majority of fatalities reported
+in the United States, accounting for 52 fatalities in 2024
+[20]. Furthermore, intense tropical cyclone Gezani struck
+eastern Madagascar on February 10, 2026, with winds of
+about 180 km/h. The cyclone caused severe damage in
+Toamasina, affecting nearly270,000individuals, displac-
+ing around 16,000 people, and resulting in at least 40 fa-
+talities [35]. These staggering figures highlight the impor-
+tance of effective disaster assessment and mitigation strate-
+gies, ensuring quick recovery. However, traditional and
+manual assessment methods are often labor-intensive and
+time-consuming, which causes delays in recovery efforts
+and stretches limited resources. In addition, even if access
+to affected locations may be possible, dangerous conditions
+such as extreme heat and unstable structures pose serious
+safety risks to rescuers [23].
+To address these limitations, researchers are using ad-
+vanced technologies to gather information on buildings im-
+pacted by natural disasters. Various state-of-the-art tech-
+niques for data collection, remote sensing, and image-based
+analysis for precise post-disaster building assessment [2].
+The research [11, 17] utilized remote sensing techniques for
+detecting building and infrastructure damage using Space-
+borne synthetic aperture radar (SAR) images. The studies
+[15, 18] leveraged object detection methods like You Only
+Look Once (YOLO), Single Shot Multibox Detector (SSD)
+for accurate bu
+--- PENULTIMATE / LAST PAGE EXCERPT ---
+for post-disaster damage assessment and
+analysis. In2021 IEEE International Geoscience and Re-
+mote Sensing Symposium IGARSS, pages 8660–8663. IEEE,
+2021. 2, 3
+[30] Gemma Team and Google DeepMind. Gemma 3 technical
+report.arXiv preprint arXiv:2503.19786, 2025. 4
+[31] Robinson Umeike, Thang Dao, and Shane Crawford. Ac-
+celerating post-tornado disaster assessment using advanced
+deep learning models. In2024 IEEE MetroCon, pages 1–3.
+IEEE, 2024. 3
+[32] UNHCR. Myanmar earthquake: One-month impact report
+(march–april 2025). Impact report, United Nations High
+Commissioner for Refugees (UNHCR), United Nations in
+Myanmar, 2025. Accessed: 2026-02-28. 1
+[33] United Nations Office for Disaster Risk Reduction. GAR
+2025 hazard explorations: Earthquakes.https :
+/ / www . undrr . org / gar / gar2025 / hazard -
+exploration/earthquakes, 2025. Accessed: Feb. 4,
+2026. 1
+[34] Junjue Wang, Weihao Xuan, Heli Qi, Zhihao Liu, Kunyi Liu,
+Yuhan Wu, Hongruixuan Chen, Jian Song, Junshi Xia, Zhuo
+Zheng, et al. Disasterm3: A remote sensing vision-language
+dataset for disaster damage assessment and response.arXiv
+preprint arXiv:2505.21089, 2025. 3
+[35] World Meteorological Organization (WMO). Tropical
+cyclone gezani hits madagascar and threatens mozambique.
+https : / / wmo . int / media / news / tropical -
+cyclone - gezani - hits - madagascar - and -
+threatens- mozambique, 2026. Accessed: 2026-02-
+28. 2
+[36] Bo Yuan, Zhaoyun Sun, Lili Pei, Wei Li, Minghang Ding,
+and Xueli Hao. Super-resolution reconstruction method of
+pavement crack images based on an improved generative ad-
+versarial network.Sensors, 22(23):9092, 2022. 2
+[37] Yuzhe Zhao and Haizhong Qian. Mar-yolo: multi-scale fea-
+ture adaptive selection and asymptotic pyramid for oriented
+building detection in remote sensing images.Scientific Re-
+ports, 2025. 4
+[38] Jianjun Zhou, Jianbo Zhang, Jiangang Jia, and Jie Liu. Sr-
+gan based super-resolution reconstruction of power inspec-
+tion images.Discover Applied Sciences, 6(12):639, 2024.
+2
+9314
+
